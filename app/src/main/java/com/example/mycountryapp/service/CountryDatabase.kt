@@ -11,7 +11,7 @@ import com.example.mycountryapp.model.Country
 @Database(entities = arrayOf(Country::class), version = 1)
 abstract class CountryDatabase : RoomDatabase(){
 
-    abstract fun CountryDao() : CountryDao
+    abstract fun countryDao() : CountryDao
 
     companion object{
         @Volatile private var instance : CountryDatabase?= null
