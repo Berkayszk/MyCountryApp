@@ -32,9 +32,9 @@ class FeedViewModel(application: Application) : BaseViewModel(application) {
             getDataFromAPI()
         }
     }
-    fun refleshDataFromAPI(){
-        getDataFromAPI()
-    }
+   fun refleshDataFromAPI(){
+       getDataFromAPI()
+   }
     private fun getDataFromSQLite(){
         countryLoading.value = true
         launch {
