@@ -5,11 +5,22 @@
         <variable
             name="country"
             type="com.example.mycountryapp.model.Country" />
+        <variable
+            name="listener"
+            type="com.example.mycountryapp.adapter.CountryClickLİstener" />
     </data>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:onClick="@{listener::onCountryClick}">
+        <TextView
+            android:id="@+id/countryUuidText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@{String.valueOf(country.uuid)}">
+        </TextView>
 
         <ImageView
             android:id="@+id/imageView"

@@ -1,16 +1,20 @@
 package com.example.mycountryapp.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mycountryapp.R
 import com.example.mycountryapp.databinding.ItemCountryBinding
 import com.example.mycountryapp.model.Country
+import com.example.mycountryapp.view.FeedFragmentDirections
+import kotlinx.android.synthetic.main.item_country.view.*
 
 
-class CountryAdapter(val countryList: ArrayList<Country>): RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {
+class CountryAdapter(val countryList: ArrayList<Country>): RecyclerView.Adapter<CountryAdapter.CountryViewHolder>(),CountryClickLİstener {
 
 
 
@@ -33,7 +37,7 @@ class CountryAdapter(val countryList: ArrayList<Country>): RecyclerView.Adapter<
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
 
         holder.view.country = countryList[position]
-
+        holder.view.listener = this
 
         /*
         //item_country
@@ -56,5 +60,11 @@ class CountryAdapter(val countryList: ArrayList<Country>): RecyclerView.Adapter<
         countryList.clear()
         countryList.addAll(newCountryList)
         notifyDataSetChanged()
+    }
+
+    override fun onCountryClick(v: View) {
+        val uuid = v.countryUuidText.text.toString().toInt()
+        val action = FeedFragmentDirections.actionFeedFragmentToCountryFragment(uuid)
+        Navigation.findNavController(v).navigate(action)
     }
 }
